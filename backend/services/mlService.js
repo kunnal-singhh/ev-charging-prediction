@@ -2,6 +2,8 @@ const ML_API_URL =
     process.env.ML_API_URL ||
     "http://127.0.0.1:8000";
 
+const ML_REQUEST_TIMEOUT_MS = 30000;
+
 
 async function predictBatch(predictions) {
 
@@ -15,7 +17,7 @@ async function predictBatch(predictions) {
             body: JSON.stringify({
                 predictions
             }),
-            signal: AbortSignal.timeout(5000)
+            signal: AbortSignal.timeout(ML_REQUEST_TIMEOUT_MS)
         }
     );
 
