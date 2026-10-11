@@ -323,7 +323,7 @@ $$\text{Brier Score} = \frac{1}{N}\sum_{i=1}^N (\hat{p}_i - y_i)^2$$
 
 ## 18. FastAPI Microservice Architecture
 
-- **Path:** `api/main.py`
+- **Path:** `services/ai-service/app/main.py`
 - **Port:** `8000`
 - **Features:**
   - Singleton memory load of the 1,861,585-record occupancy dataset and training priors ($1,320$ rates, $55$ session stats).
@@ -412,6 +412,28 @@ Stations are sorted descending by $S_{\text{recommendation}}$ (with `stationId` 
 | `GET` | `/api/sessions/:id` | Get specific charging session | JWT |
 | `PATCH`| `/api/sessions/:id` | Update / cancel charging session | JWT |
 
+## Deployment on free tiers
+
+The repository is split into three deployable services:
+
+- **Netlify:** deploy the `frontend` directory as a Vite site. The included
+  [`netlify.toml`](./netlify.toml) sets the build command and SPA fallback.
+  Configure `VITE_API_URL` to the public Render backend URL.
+- **Render AI service:** create a Web Service from this repository with root
+  directory `services/ai-service`, build command
+  `pip install -r requirements.txt`, and start command
+  `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+- **Render backend:** create a second Web Service with root directory
+  `backend`, build command `npm ci`, and start command `npm start`.
+  Configure `MONGO_URI`, `JWT_SECRET`, and `ML_API_URL` using the Render
+  service URL of the AI service. [`render.yaml`](./render.yaml) contains both
+  Render service definitions.
+
+For MongoDB, create a free MongoDB Atlas cluster, allow the backend service's
+connection according to Atlas network-access rules, and copy its connection
+string into `MONGO_URI`. Free Render services sleep when idle, so the first
+request after inactivity can be slow.
+
 ---
 
 ## 24. Environment Variables
@@ -448,7 +470,7 @@ python -m venv venv
 # source venv/bin/activate
 
 # Install Python ML & API dependencies
-pip install -r requirements.txt
+pip install -r services/ai-service/requirements.txt
 ```
 
 ### 2. Setup Node.js Backend
@@ -471,7 +493,7 @@ npm install
 From the project root (with `venv` activated):
 
 ```bash
-uvicorn api.main:app --host 127.0.0.1 --port 8000 --reload
+uvicorn app.main:app --app-dir services/ai-service --host 127.0.0.1 --port 8000 --reload
 ```
 
 - API Docs: `http://127.0.0.1:8000/docs`
@@ -552,10 +574,16 @@ curl -X POST http://127.0.0.1:8000/predict \
 ev-charging-prediction/
 ├── .gitignore                      # Git ignore configurations
 ├── README.md                       # Comprehensive project documentation
-├── requirements.txt                # Python dependencies
+├── render.yaml                    # Render services blueprint
+├── netlify.toml                   # Netlify frontend configuration
+├── services/
+│   └── ai-service/                # Independently deployable FastAPI service
+│       ├── app/
+│       ├── data/processed/
+│       ├── models/final/
+│       └── requirements.txt
 ├── final_minor_project_report.md   # Comprehensive academic project report
 ├── research_paper_final.md         # Final IEEE-style research manuscript
-├── api/                            # FastAPI microservice
 │   ├── feature_engineering.py     # 8-feature extraction logic & lookups
 │   ├── main.py                     # FastAPI application & endpoints
 │   └── occupancy_service.py        # Shared dataset loading & caching
@@ -621,7 +649,7 @@ ev-charging-prediction/
 For detailed mathematical formulations, statistical proofs, and extended literature context:
 - **Full Academic Research Paper:** [`research_paper_final.md`](./research_paper_final.md)
 - **Comprehensive Minor Project Report:** [`final_minor_project_report.md`](./final_minor_project_report.md)
-- **Model Metadata & Manifest:** [`models/final/metadata.json`](./models/final/metadata.json)
+- **Model Metadata & Manifest:** [`services/ai-service/models/final/metadata.json`](./services/ai-service/models/final/metadata.json)
 
 ---
 

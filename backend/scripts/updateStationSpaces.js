@@ -10,7 +10,10 @@ const Station = require("../models/Station");
 
 const DATA_PATH = path.join(
     __dirname,
-    "../../data/raw/acn_data.json"
+    "..",
+    "data",
+    "raw",
+    "acn_data.json"
 );
 
 

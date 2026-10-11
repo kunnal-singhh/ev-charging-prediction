@@ -1,5 +1,5 @@
 import pandas as pd
-from api.occupancy_service import (
+from app.occupancy_service import (
     get_station_hour_rate,
     get_station_avg_duration,
 )

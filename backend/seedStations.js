@@ -12,6 +12,8 @@ const { parse } = require("csv-parse/sync");
 const CSV_PATH = path.join(
     __dirname,
     "..",
+    "services",
+    "ai-service",
     "data",
     "processed",
     "station_occupancy_30min.csv"

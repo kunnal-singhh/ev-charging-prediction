@@ -33,6 +33,10 @@ models/ev_occupancy_model.pkl
 models/ev_occupancy_xgboost.pkl
 models/features.pkl
 models/research/
+models/
+!models/
+!models/final/
+!models/final/**
 
 # Runtime datasets are intentionally limited to the files required by the APIs.
 data/raw/
@@ -40,6 +44,14 @@ data/processed/*
 !data/processed/station_occupancy_30min.csv
 !data/processed/station_hour_rates_train.csv
 !data/processed/station_session_stats_train.csv
+backend/data/raw/
+!backend/data/
+!backend/data/raw/
+!backend/data/raw/**
+services/ai-service/data/processed/*
+!services/ai-service/data/processed/station_occupancy_30min.csv
+!services/ai-service/data/processed/station_hour_rates_train.csv
+!services/ai-service/data/processed/station_session_stats_train.csv
 
 # Generated research and presentation output
 artifacts/
