@@ -431,7 +431,8 @@ The repository is split into three deployable services:
 
 Set `FRONTEND_URL` on the Render backend to the deployed Vercel URL, for
 example `https://evconnect.vercel.app`. This URL is used by the backend CORS
-configuration. For local development, use `http://localhost:5173`.
+configuration. Vercel preview domains ending in `.vercel.app` are also
+accepted. For local development, use `http://localhost:5173`.
 
 For MongoDB, create a free MongoDB Atlas cluster, allow the backend service's
 connection according to Atlas network-access rules, and copy its connection

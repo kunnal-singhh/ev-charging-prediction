@@ -40,6 +40,14 @@ const allowedOrigins = [
     process.env.FRONTEND_URL
 ].filter(Boolean);
 
+const isAllowedOrigin = (origin) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+        return true;
+    }
+
+    return /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin);
+};
+
 
 // Connect MongoDB
 connectDB();
@@ -47,7 +55,13 @@ connectDB();
 
 // Middleware
 app.use(cors({
-    origin: allowedOrigins
+    origin: (origin, callback) => {
+        if (isAllowedOrigin(origin)) {
+            return callback(null, true);
+        }
+
+        return callback(new Error("Origin is not allowed by CORS"));
+    }
 }));
 app.use(express.json());
 
