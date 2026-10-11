@@ -19,3 +19,7 @@ The service does not require an `.env` file. Render supplies `PORT`
 automatically. Set `FRONTEND_URL` to the deployed Vercel URL if browser
 requests need to call this service directly; normally browser traffic goes
 through the backend.
+
+The deployment requirements intentionally contain only packages needed by the
+API. Notebook, Windows-only, and local development packages are kept out of
+the Render image.
