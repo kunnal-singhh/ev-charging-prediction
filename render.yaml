@@ -25,6 +25,6 @@ services:
       - key: JWT_SECRET
         sync: false
       - key: ML_API_URL
-        value: https://evconnect-ai.onrender.com
+        value: https://ev-charging-prediction-rr54.onrender.com
       - key: FRONTEND_URL
         sync: false

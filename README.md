@@ -426,7 +426,9 @@ The repository is split into three deployable services:
 - **Render backend:** create a second Web Service with root directory
   `backend`, build command `npm ci`, and start command `npm start`.
   Configure `MONGO_URI`, `JWT_SECRET`, and `ML_API_URL` using the Render
-  service URL of the AI service. [`render.yaml`](./render.yaml) contains both
+  service URL of the AI service. The current AI service URL is
+  `https://ev-charging-prediction-rr54.onrender.com`; update it if Render
+  assigns a different URL. [`render.yaml`](./render.yaml) contains both
   Render service definitions.
 
 Set `FRONTEND_URL` on the Render backend to the deployed Vercel URL, for
