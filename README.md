@@ -429,6 +429,10 @@ The repository is split into three deployable services:
   service URL of the AI service. [`render.yaml`](./render.yaml) contains both
   Render service definitions.
 
+Set `FRONTEND_URL` on the Render backend to the deployed Vercel URL, for
+example `https://evconnect.vercel.app`. This URL is used by the backend CORS
+configuration. For local development, use `http://localhost:5173`.
+
 For MongoDB, create a free MongoDB Atlas cluster, allow the backend service's
 connection according to Atlas network-access rules, and copy its connection
 string into `MONGO_URI`. Free Render services sleep when idle, so the first

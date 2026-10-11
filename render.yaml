@@ -26,3 +26,5 @@ services:
         sync: false
       - key: ML_API_URL
         value: https://evconnect-ai.onrender.com
+      - key: FRONTEND_URL
+        sync: false
