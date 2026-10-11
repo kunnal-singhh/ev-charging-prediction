@@ -1,0 +1,6 @@
+{
+    "threshold": 0.5,
+    "selection_method": "validation_f1",
+    "metric": "f1",
+    "prediction_horizon_minutes": 30
+}

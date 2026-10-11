@@ -1,0 +1,10 @@
+[
+    "local_hour",
+    "local_day_of_week",
+    "is_weekend",
+    "month",
+    "previous_occupancy",
+    "rolling_2hr_occupancy",
+    "station_hour_occupancy_rate",
+    "station_avg_session_duration"
+]

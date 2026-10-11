@@ -1,0 +1,59 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+
+# Node
+node_modules/
+
+# Frontend build output
+frontend/dist/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local model artifacts in root
+models/ev_occupancy_model.pkl
+models/ev_occupancy_xgboost.pkl
+models/features.pkl
+models/research/
+
+# Runtime datasets are intentionally limited to the files required by the APIs.
+data/raw/
+data/processed/*
+!data/processed/station_occupancy_30min.csv
+!data/processed/station_hour_rates_train.csv
+!data/processed/station_session_stats_train.csv
+
+# Generated research and presentation output
+artifacts/
+scratch/
+*.pptx
+slide_*_img.png
+temp_slide*_img.png
+nit_logo_crop.png
+phase8*_audit.md
+phase8*_plan.md
+phase8b_*.md
+research_paper_final.md
+final_minor_project_report.md
+PROGRESS_PRESENTATION_GUIDE.md
+
+# Local test output
+test_*.pptx
